@@ -1,0 +1,211 @@
+<nav class="navbar navbar-light bg-light m-2">
+  <h1 class="h2 ps-1 page-title"><strong>Delivery Note</strong></h1>
+</nav>
+<main class="content">
+  <div class="row p-3 bg-white">
+    <form>
+      <div class="row g-3">
+        <div class="col-md-1">
+          <label class="form-label">No<span class="text-danger">*</span></label>
+          <input type="text" class="form-control" />
+        </div>
+        <div class="col-md-3">
+          <label class="form-label"
+            >DATE<span class="text-danger">*</span></label
+          >
+          <div class="input-group">
+            <input
+              class="form-control mat-datepicker"
+              readonly
+              matInput
+              [matDatepicker]="picker"
+              placeholder="dd/mm/yyyy"
+              formControlName="regdate"
+            />
+            <div class="input-group-append">
+              <mat-datepicker-toggle
+                class="mat-datepicker-icon"
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <label class="form-label"
+            >CUSTOMER<span class="text-danger">*</span></label
+          >
+          <div class="row">
+            <div class="col-md-8">
+              <input type="text" class="form-select" value="select" />
+            </div>
+            <div class="col-md-4">
+              <button class="btn btn-success">
+                <i class="fa fa-plus" aria-hidden="true"></i></button
+              >&nbsp;
+              <button class="btn btn-success">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <label class="form-label"
+            >REFERENCE NO<span class="text-danger">*</span></label
+          >
+          <input type="text" class="form-control" />
+        </div>
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <a class="btn btn-danger ms-2" routerLink="/admin/businesses"
+            >Cancel</a
+          >
+        </div>
+      </div>
+      <br />
+
+      <table
+        class="table table-bordered table-hover border-dark shadow-lg p-3 mb-5 mt-1 text-right"
+      >
+        <thead>
+          <tr class="table-light">
+            <th></th>
+            <th style="width: 200px">Product</th>
+            <th>Lot/Batch No</th>
+            <th>Mfg Date</th>
+            <th>Exp Date</th>
+            <th>Quantity</th>
+            <th>Rate(With GST)</th>
+            <th>Disc. %</th>
+            <th>Disc. Amount</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let add of addarry; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td><input type="text" class="form-select" value="select" /></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><input type="text" class="form-select" /></td>
+            <td><input type="text" class="form-select" /></td>
+            <td><input type="text" class="form-select" /></td>
+            <td><input type="text" class="form-select" /></td>
+            <td>
+              <input type="text" class="form-select text-end" value="0.00" />
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-danger float-end"
+                (click)="addnew(1)"
+              >
+                +Add
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-lg-6">
+          <table
+            class="table table-bordered table-hover border-dark shadow-lg p-3 mb-5 mt-1 text-right"
+          >
+            <tbody>
+              <tr>
+                <th>Discount</th>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control text-end"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th>Tcs</th>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control text-end"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th>Transportation</th>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control text-end"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-lg-6">
+          <table
+            class="table table-bordered table-hover border-dark shadow-lg p-3 mb-5 mt-1 text-right"
+          >
+            <tbody>
+              <tr>
+                <th>Total Taxable Amount</th>
+                <td class="text-end">0.00</td>
+              </tr>
+              <tr>
+                <th>CGST Amount</th>
+                <td class="text-end">0.00</td>
+              </tr>
+              <tr>
+                <th>SGST Amount</th>
+                <td class="text-end">0.00</td>
+              </tr>
+              <tr>
+                <th>IGST Amount</th>
+                <td class="text-end">0.00</td>
+              </tr>
+              <tr>
+                <th>
+                  Round off
+                  <label class="switch">
+                    <input type="checkbox" checked />
+                    <span class="slider round">
+                      <span class="Yes">Yes</span>
+                      <span class="No">No</span>
+                    </span>
+                  </label>
+                </th>
+                <td> <input
+                  type="text"
+                  class="form-control text-end"
+                  value="0.00"
+                /></td>
+              </tr>
+              <tr>
+                <th>Grand Total</th>
+                <td class="text-end">0.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
+</main>
